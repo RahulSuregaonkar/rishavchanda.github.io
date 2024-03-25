@@ -123,10 +123,10 @@ const Projects = ({ openModal, setOpenModal }) => {
           </ToggleButton>
           <Divider />
           <ToggleButton
-            active={toggle === "android app"}
-            onClick={() => setToggle("android app")}
+            active={toggle === "SQL"}
+            onClick={() => setToggle("SQL")}
           >
-            ANDROID APP'S
+            SQL
           </ToggleButton>
           <Divider />
           <ToggleButton
@@ -134,6 +134,13 @@ const Projects = ({ openModal, setOpenModal }) => {
             onClick={() => setToggle("machine learning")}
           >
             MACHINE LEARNING
+          </ToggleButton>
+          <Divider />
+          <ToggleButton
+            active={toggle === "Power BI"}
+            onClick={() => setToggle("Power BI")}
+          >
+            Power BI
           </ToggleButton>
         </ToggleButtonGroup>
         <CardContainer>

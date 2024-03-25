@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
-import emailjs from "@emailjs/browser";
+import emailjs from "emailjs-com";
 import EarthCanvas from "../canvas/Earth";
 
 const Container = styled.div`
@@ -51,6 +51,7 @@ const Desc = styled.div`
     font-size: 16px;
   }
 `;
+
 const ContactForm = styled.form`
   width: 95%;
   max-width: 600px;
@@ -64,12 +65,14 @@ const ContactForm = styled.form`
   margin-top: 28px;
   gap: 12px;
 `;
+
 const ContactTitle = styled.div`
   font-size: 28px;
   margin-bottom: 6px;
   font-weight: 600;
   color: ${({ theme }) => theme.text_primary};
 `;
+
 const ContactInput = styled.input`
   flex: 1;
   background-color: transparent;
@@ -83,6 +86,7 @@ const ContactInput = styled.input`
     border: 1px solid ${({ theme }) => theme.primary};
   }
 `;
+
 const ContactInputMessage = styled.textarea`
   flex: 1;
   background-color: transparent;
@@ -96,6 +100,7 @@ const ContactInputMessage = styled.textarea`
     border: 1px solid ${({ theme }) => theme.primary};
   }
 `;
+
 const ContactButton = styled.input`
   width: 100%;
   text-decoration: none;
@@ -126,24 +131,24 @@ const ContactButton = styled.input`
 `;
 
 const Contact = () => {
-  const form = useRef();
-
   const handleSubmit = (e) => {
     e.preventDefault();
     emailjs
       .sendForm(
-        "service_tox7kqs",
-        "template_nv7k7mj",
-        form.current,
-        "SybVGsYS52j2TfLbi"
+        "service_5nqyv6s",
+        "template_6iyw9ff",
+        e.target,
+        "DEbtOHeBNyPYyFBJM"
       )
       .then(
         (result) => {
-          alert("Message Sent");
-          form.current.resut();
+          console.log(result);
+          alert("Message Sent!");
+          e.target.reset();
         },
         (error) => {
-          alert(error);
+          console.error("EmailJS Error:", error);
+          alert("An error occurred. Please try again later.");
         }
       );
   };
@@ -161,7 +166,11 @@ const Contact = () => {
           <ContactInput placeholder="Your Email" name="from_email" />
           <ContactInput placeholder="Your Name" name="from_name" />
           <ContactInput placeholder="Subject" name="subject" />
-          <ContactInputMessage placeholder="Message" name="message" rows={4} />
+          <ContactInputMessage
+            placeholder="Message"
+            name="message"
+            rows={4}
+          />
           <ContactButton type="submit" value="Send" />
         </ContactForm>
       </Wrapper>
